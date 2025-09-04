@@ -3,3 +3,27 @@ import random
 import pyttsx3
 import requests
 import speech_recognition as sr
+
+class voiceAssistant:
+    def __init__(self):
+        self._setup_core_components()
+        self._setup_apis()
+        self._setup_responses()
+        self._initialize_assistant()
+    def _setup_core_components(self):
+        self.recognizer = sr.Recognizer()
+        self.microphone = sr.Microphone()
+        self.engine = pyttsx3.init()
+        self.assistant_name = "Alt Cunningham"
+        self._configure_voice()
+    def setup_apis(self):
+        self.gemini_api_key = "AIzaSyBs6PtzdSOxvu7n5DofqdqEqbRj2wOV3tQ"
+        self.gemini_api_url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+    def _setup_responses(self):
+        self.responses = {
+            "hello": ["Hello! How can I help you today?", "Hi there!", "Hello! Nice to meet you!"],
+            "how are you": ["I'm doing great, thank you for asking!", "I'm fine, how about you?"],
+            "what is your name": [f"I'm {self.assistant_name}, your personal voice assistant!", f"You can call me {self.assistant_name}.", f"I'm {self.assistant_name}."],
+            "goodbye": ["Goodbye! Have a great day!", "See you later!", "Bye! Take care!"],
+            "thank you": ["You're welcome!", "Happy to help!", "No problem!"],
+        }
